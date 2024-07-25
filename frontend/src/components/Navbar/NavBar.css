@@ -1,0 +1,97 @@
+.bg-body-navbar {
+    background-color: #8db4c4;
+    color: #0d3140;
+    font-weight: bolder;
+    font-size: .7rem;
+  }
+
+  .nav-head {
+    font-family: 'FontAwesome';
+    font-size: 2rem;
+    color: #011a24;
+    text-shadow: .1rem .1rem #152015;
+  }
+
+  .head-e {
+    color :  #205c25;
+  }
+  .head-t {
+    color : #ded82c;
+  }
+  .head-m {
+    color : #c9500e;
+  }
+
+  .nav-regform {
+     
+    background-color: #b1d1de;
+    margin: .1rem;
+    padding: .1rem .5rem;
+    border-radius: 20px;
+    border: 1px solid #0d3140;
+  }
+
+  .nav-regform:hover {
+    background-color: #286a85;
+    color: #ecf2f5;
+  }
+
+  .nav-dropdown {
+    background-color: #b1d1de;
+    margin: .1rem;
+    padding: .1rem .5rem;
+    border-radius: 20px;
+    border: 1px solid #0d3140;
+  }
+
+  .nav-dropdown:hover {
+    background-color: #286a85;
+    color: #ecf2f5;
+  }
+
+  .nav-signin:hover {
+    background-color: #286a85;
+    color: #ecf2f5;
+  }
+
+  .nav-searchbar {
+    width: 12em;
+    padding: .4rem .5rem;
+    margin:.1rem;
+    border-radius: 20px;
+    border: 1px solid #0d3140;
+  }
+
+  .nav-search-icon {
+    padding: .2rem .5rem;
+    margin: .3em 1em .3em .4em;
+    border-radius: 20px;
+    border: 1px solid #0d3140;
+    background-color: #b1d1de;
+    color: #0d3140;
+  }
+
+  .nav-search-icon:hover {
+    background-color: #286a85;
+    border: 1px solid #0d3140;
+    color: #ecf2f5;
+  }
+
+  .toggle-icons {
+    background-color: #fff;
+  }
+
+  .dropdown-item {
+    color: #0d3140;
+    background-color: #b1d1de;
+  }
+
+  .dropdown-item:hover{
+    background-color: #0d3140;
+    color: #b1d1de;
+    font-weight: bold;
+  }
+
+  .dropdown-menu.show {
+    background-color: #b1d1de;
+  }

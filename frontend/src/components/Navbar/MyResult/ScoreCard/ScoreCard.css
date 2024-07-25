@@ -1,0 +1,35 @@
+.score-card {
+    text-align: center;
+}
+.score-card-table Table {
+    padding: 2rem;
+    margin: 1rem;
+    text-align: center;
+}
+
+.score-card-table thead {
+    padding: 2rem;
+    height: 4rem;
+}
+
+.score-card-table tbody {
+    padding: 2rem;
+    height: 10rem;
+}
+
+.score-card-table {
+    border: 1px solid #0d3140;
+    background-color: #e4e6eb;
+    padding: .5rem 2rem;
+    border-radius: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+                  rgba(0,0,0,0.3) 0px 18px 36px -18px;
+}
+
+.score-card-table-student {
+    text-align: left;
+    border: 1px solid #0d3140;
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}

@@ -1,0 +1,29 @@
+.footer-icon {
+    margin: .5rem;
+    padding: .2rem;
+    border-radius: 20px;
+    background-color: #8db4c4;
+    color: #0d3140;
+    border: 1px solid #0d3140;
+}
+
+.footer-icon:hover{
+    background-color: #18536b;
+    color: #ecf2f5;
+}
+
+.footer-options {
+    list-style: none;
+    display: inline;
+    margin: .2rem;
+    padding: .2rem;
+}
+
+.footer-options:hover {
+    font-weight: bolder;
+}
+
+.footer-h6 {
+    font-size: .8rem;
+    font-weight: 500;
+}

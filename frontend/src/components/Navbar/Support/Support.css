@@ -1,0 +1,19 @@
+.support-page {
+    text-align: left;
+}
+
+.support-page-box {
+    background-color: #a8c3ce;
+    height: auto;
+    padding: .8rem;
+    border: .5px solid #0d3140;
+    border-radius: 20px;
+}
+
+.support-page-box li {
+    list-style: none;
+}
+
+.support-page-box h4 {
+    text-decoration: underline;
+}

@@ -1,0 +1,45 @@
+
+.sign-in-page {
+    
+    text-align: center;
+    margin: auto;
+    padding: 3rem;
+    line-height: 1rem;
+    float: left;
+    
+}
+
+.sign-in-page Form {
+    border: 1px solid #0d3140 ;
+    background-color: #8db4c4;
+    padding: 2rem;
+    border-top-left-radius: 5em;
+    border-bottom-right-radius: 5em;
+}
+
+
+.sign-in-page h1 {
+    font-size: 20px;
+    margin-bottom: 3rem;
+    font-weight: bolder;
+}
+
+.sign-in-page p {
+    margin-top: 3rem;
+}
+
+.nav-regform-signin {
+    text-decoration: none;
+    color: green;
+}
+
+.sign-in-page-right {
+    text-align: left;
+    margin: auto;
+    padding: 6.5rem 2rem;
+}
+
+.sign-in-page-right h2 {
+    font-weight: bolder;
+    font-size: 3rem;
+}

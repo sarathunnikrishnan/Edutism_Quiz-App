@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+.bg-lineargradient-top {
+  height: 2rem;
+  background-image: linear-gradient(#8db4c4, #b7cced);
+}
+
+.bg-lineargradient-bottom {
+  height: 2rem;
+  background-image: linear-gradient(#b7cced, #8db4c4);
+}
+
+
+.center-content {
+  height: auto;
+  background-color: #b7cced;
+  color: #0d3140;
+  padding-top: 1em;
+  padding-bottom: 4rem;
+  float: left;
+}
+
+
+.footer-div {
+  width: 100%;
+  height: auto;
+  background-color: #8db4c4;
+  padding: 3rem;
+}
+

@@ -1,0 +1,83 @@
+.home-page h1 {
+    font-size: 2rem;
+    font-weight: bolder;
+    font-family: cursive;
+    padding: 2rem;
+    color: #151B54;
+    text-shadow: .1rem .1rem #fff;
+    letter-spacing: .2rem;
+}
+
+.home-header {
+    padding-top: 4rem;
+}
+
+.home-header-left {
+    text-align: left;
+    padding: 2rem;
+    float: left;
+}
+
+.home-header-left h2 {
+    font-size: 3rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+}
+
+.home-header-left h3 {
+    font-size: 1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: bolder;
+}
+
+.home-header-left-button {
+    background-color: #2B547E;
+    border: 1px solid #0d3140 ;
+    color: #fff;
+    padding: .5rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 20px;
+    margin-top: 1rem;
+    width: 12rem;
+}
+
+.home-header-left-button:hover {
+    background-color: #29465B;
+    color: #fff;
+}
+
+.home-header-right img {
+    width: 100%;
+    padding:.4rem 0 .4rem 0;
+}
+
+.center-1-right h4, .center-2-left h4 {
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+.center-1-left, .center-2-right {
+    padding: 3rem 0 3rem 0;
+}
+.center-1-right, .center-2-left {
+    padding: 2.52rem 1rem 2.52rem 1rem;
+}
+
+.center-1 {
+    padding-top: 4rem;
+}
+
+.center-2-right img, .center-1-left img {
+    width: 100%;
+    padding-left:1rem;
+}
+
+.center-2-left {
+    margin: 6rem 0 ;
+}
+
+

@@ -1,0 +1,24 @@
+.result-page {
+    text-align: left;
+}
+
+.result-box {
+    text-align: center;
+    border: 1px solid #0d3140;
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
+                  rgba(0,0,0,0.3) 0px 18px 36px -18px;
+}
+
+.result-box h4, h5 {
+    color: #464242;
+}
+
+.result-box-log {
+    color: red;
+}
+
+.result-box-log:hover {
+    color: rgb(85, 33, 33);
+}
