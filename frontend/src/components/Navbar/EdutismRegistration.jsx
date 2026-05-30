@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./EdutismRegistration.css";
-import { Button, DatePicker, Form, Input, Mentions } from "antd";
+import { Button, DatePicker, Form, Input, Mentions, message } from "antd";
 import { Container } from "react-bootstrap";
 import girl from "./kiddo-pointing-up-204x300.png";
 import axios from "axios";
@@ -19,7 +19,7 @@ const EdutismRegistration = () => {
   const addData = (e) => {
    
     e.preventDefault();
-    const url = "http://localhost:7070/dataregister"
+    const url = `${process.env.REACT_APP_API_URL}/dataregister`;
     axios.post(url, {firstName,
       lastName,
       email,
@@ -27,12 +27,19 @@ const EdutismRegistration = () => {
       birthDate,
       state,
       password}).then((res)=>{
-           alert(res.data)
-        if(res.data !== "This Email is already exist"){
-          navigate('/signin')
+        if (res.data.success || res.status === 201) {
+          message.success(res.data.message || 'Registration Successful');
+          navigate('/signin');
+        } else {
+          message.error(res.data.message || 'Registration Failed');
         }
-        
-      })
+      }).catch((error) => {
+        if (error.response && error.response.data && error.response.data.message) {
+          message.error(error.response.data.message);
+        } else {
+          message.error('An error occurred during registration.');
+        }
+      });
   };
   return (
     <div>

@@ -26,7 +26,7 @@ const NavBar = () => {
             className="justify-content-end"
             aria-controls="responsive-navbar-nav"
           >
-            <Nav.Link as={Link} to="Home" className="nav-regform">
+            <Nav.Link as={Link} to="/Home" className="nav-regform">
               <i class="fa-solid fa-house m-2"></i>
               HOME
             </Nav.Link>
@@ -35,18 +35,18 @@ const NavBar = () => {
               id="basic-nav-dropdown"
               className="nav-dropdown"
             >
-              <NavDropdown.Item as={Link} to="freeiqtest">
+              <NavDropdown.Item as={Link} to="/freeiqtest">
                 <i class="fa-solid fa-circle-arrow-right m-2"></i>FREE IQ TEST
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="kidsiqtest">
+              <NavDropdown.Item as={Link} to="/kidsiqtest">
                 <i class="fa-solid fa-circle-arrow-right m-2"></i>
                 KIDS IQ TEST
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="personalitytest">
+              <NavDropdown.Item as={Link} to="/personalitytest">
                 <i class="fa-solid fa-circle-arrow-right m-2"></i>PERSONALITY
                 TEST
               </NavDropdown.Item>
-              <NavDropdown.Item as={Link} to="spatialtest">
+              <NavDropdown.Item as={Link} to="/spatialtest">
                 <i class="fa-solid fa-circle-arrow-right m-2"></i>SPATIAL IQ
                 TEST
               </NavDropdown.Item>
@@ -60,11 +60,11 @@ const NavBar = () => {
                 OTHER CARRER TESTS
               </NavDropdown.Item>
             </NavDropdown>
-            <Nav.Link as={Link} to="myresult" className="nav-regform">
+            <Nav.Link as={Link} to="/myresult" className="nav-regform">
               <i class="fa-solid fa-square-poll-vertical m-2"></i>
               MY RESULT
             </Nav.Link>
-            <Nav.Link as={Link} to="support" className="nav-regform">
+            <Nav.Link as={Link} to="/support" className="nav-regform">
               <i class="fa-solid fa-life-ring m-2"></i>
               SUPPORT
             </Nav.Link>
@@ -76,7 +76,7 @@ const NavBar = () => {
                   id="basic-nav-dropdown"
                   className="nav-dropdown"
                 >
-                  <NavDropdown.Item as={Link} to="logout">
+                  <NavDropdown.Item as={Link} to="/logout">
                     Log Out
                   </NavDropdown.Item>
                 </NavDropdown>
@@ -85,13 +85,13 @@ const NavBar = () => {
               <>
                 <Nav.Link
                   as={Link}
-                  to="EdutismRegistration"
+                  to="/EdutismRegistration"
                   className="nav-regform"
                 >
                   <i class="fa-solid fa-address-card m-2"></i>
                   REGISTER fOR EDUTISM
                 </Nav.Link>
-                <Nav.Link as={Link} to="signin" className="nav-regform">
+                <Nav.Link as={Link} to="/signin" className="nav-regform">
                   <i class="fa-solid fa-right-to-bracket m-2"></i>
                   SIGN IN
                 </Nav.Link>
