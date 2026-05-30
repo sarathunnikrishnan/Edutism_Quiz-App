@@ -1,107 +1,165 @@
-const express = require("express")
-const cors = require('cors')
-const mongoose = require('mongoose')
+require("dotenv").config();
+
+const express = require("express");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
+
 const app = express();
-const edutismModel = require('./mongodb.js')
-const session = require('express-session')
-const MongoDBStore = require('connect-mongodb-session')(session);
 
-//mongodb connect
+const edutismModel = require("./mongodb");
 
-async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/edutism');
-    console.log("database connected...")
-}
+// MongoDB Connection
+mongoose
+  .connect(`${process.env.MONGODB_URI}/edutism`)
+  .then(() => console.log("Database connected"))
+  .catch((err) => console.log(err));
 
-main().catch((err) => console.log(err))
-
-// Create a new MongoDBStore instance
+// Session Store
 const store = new MongoDBStore({
-    uri: 'mongodb://localhost:27017/session-store', // MongoDB URI
-    collection: 'sessions' // Collection name in which sessions will be stored
+  uri: `${process.env.MONGODB_URI}/session-store`,
+  collection: "sessions",
 });
 
-// Catch errors
-store.on('error', function (error) {
-    console.error(error);
+store.on("error", (error) => {
+  console.error(error);
 });
 
-app.use(cors())
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(session({
-    secret: 'key',
-    cookie: { maxAge: 600000 },
-    store: store,
+// Middleware
+app.use(
+  cors({
+    origin: true,
+    credentials: true,
+  }),
+);
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+      maxAge: 600000,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+    },
+    store,
     resave: false,
-    saveUninitialized: true
-}));
+    saveUninitialized: false,
+  }),
+);
 
+// Register
+app.post("/dataregister", async (req, res) => {
+  const {
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    birthDate,
+    state,
+    password,
+  } = req.body;
 
-app.post('/dataregister', async (req, res) => {
-    const { firstName, lastName, email, phoneNumber, birthDate, state, password } = req.body;
+  try {
+    const existingUser = await edutismModel.findOne({ email });
 
-    try {
-        const user = await edutismModel.findOne({ email: email });
-
-        if (!user) {
-            // database code
-            edutismModel.create({ firstName, lastName, email, phoneNumber, birthDate, state, password })
-                .then(() => {
-                    res.json("Successfully");
-                })
-                .catch((err) => {
-                    console.error("Error:", err);
-                    res.status(500).json({ error: "An error occurred while saving data" });
-                });
-
-        } else {
-            return res.json("This Email is already exist"); 
-        } 
-    } catch (error) {
-        console.error("Error:", error.message);
-        return res.status(500).json("Internal Server Error"); 
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "Email already exists",
+      });
     }
+
+    await edutismModel.create({
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      birthDate,
+      state,
+      password,
+    });
+
+    res.status(201).json({
+      success: true,
+      message: "User registered successfully",
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
 });
 
+// Login
+app.post("/signin", async (req, res) => {
+  const { email, password } = req.body;
 
-app.post('/signin', async (req, res) => {
-    const { email, password } = req.body;
+  try {
+    const user = await edutismModel.findOne({ email });
 
-    try {
-        const user = await edutismModel.findOne({ email: email });
-
-        if (user) {
-            if (password === user.password) {
-                req.session.loggedIn = true
-                req.session.user = user;
-                return res.json({ success: true, user: req.session.user });
-            } else {
-                return res.json("false");
-            }
-        } else {
-            return res.json("No record existed");
-        }
-    } catch (error) {
-        console.error("Error:", error.message);
-        return res.status(500).json("Internal Server Error");
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
     }
+
+    if (user.password !== password) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid password",
+      });
+    }
+
+    req.session.loggedIn = true;
+    req.session.user = user;
+
+    res.json({
+      success: true,
+      user,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
+  }
 });
 
-app.get('/logout', (req, res) => {
-    req.session.destroy(err => {
-        if (err) {
-            console.error(err);
-            res.status(500).json({ error: 'Failed to logout' });
-        } else {
-            console.log('Session destroyed successfully');
-            res.json("Successfully LogOut");
-        }
-    }); 
-    res.json("Successfully LogOut")
-})
+// Logout
+app.get("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({
+        success: false,
+        message: "Logout failed",
+      });
+    }
 
+    res.clearCookie("connect.sid");
 
-app.listen(7070, () => {
-    console.log('Server is running http://localhost:7070/');
-})
+    res.json({
+      success: true,
+      message: "Logged out successfully",
+    });
+  });
+});
+
+// Health Check
+app.get("/", (req, res) => {
+  res.send("Server Running");
+});
+
+// Start Server
+const PORT = process.env.PORT || 7070;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
