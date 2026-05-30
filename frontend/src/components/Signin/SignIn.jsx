@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import "./SignIn.css";
-import { Button, Form, Mentions, Input, message } from "antd";
-import { Link, useNavigate} from "react-router-dom";
+import { Button, Form, Input, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import axios from "axios";
 
-const SignIn = ({HandleCallback}) => {
+const SignIn = ({ HandleCallback }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -21,10 +21,10 @@ const SignIn = ({HandleCallback}) => {
           message.success("Log In Successfully");
           console.log(data);
           const transferUserData = () => {
-            HandleCallback(data)
-          }  
-          transferUserData();   
-          navigate("/home" );
+            HandleCallback(data);
+          };
+          transferUserData();
+          navigate("/home");
         } else {
           message.error("Email Or Password Is Invalid");
           console.error("Empty response or invalid data format");
@@ -32,7 +32,9 @@ const SignIn = ({HandleCallback}) => {
       })
       .catch((err) => {
         console.error("Error occurred while fetching data:", err);
-        message.error(err.response?.data?.message || "An error occurred during login.");
+        message.error(
+          err.response?.data?.message || "An error occurred during login.",
+        );
       });
   };
 
@@ -41,28 +43,28 @@ const SignIn = ({HandleCallback}) => {
       <div className="sign-in-page col-12 col-md-6 row">
         <h1>WELCOME TO EDUTISM</h1>
         <Form onSubmitCapture={addData}>
-         <Form.Item
-                  label="Email"
-                  name="email"
-                  type="email"
-                  rules={[{ required: true, message: "Please input!" }]}
-                  onChange={(e) => setEmail(e.target.value)}
-                >
-                  <Input />
-                </Form.Item>
-                <Form.Item
-                  label="Password"
-                  name="password"
-                  rules={[{ required: true, message: "Please input!" }]}
-                  onChange={(e) => setPassword(e.target.value)}
-                >
-                  <Input.Password />
-                </Form.Item>
-                <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
-                  <Button type="primary" htmlType="submit">
-                    Log In
-                  </Button>
-                </Form.Item>
+          <Form.Item
+            label="Email"
+            name="email"
+            type="email"
+            rules={[{ required: true, message: "Please input!" }]}
+            onChange={(e) => setEmail(e.target.value)}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input!" }]}
+            onChange={(e) => setPassword(e.target.value)}
+          >
+            <Input.Password />
+          </Form.Item>
+          <Form.Item wrapperCol={{ offset: 6, span: 16 }}>
+            <Button type="primary" htmlType="submit">
+              Log In
+            </Button>
+          </Form.Item>
         </Form>
         <br></br>
         <p>New to EDUTISM ?</p>
